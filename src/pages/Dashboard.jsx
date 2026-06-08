@@ -54,8 +54,8 @@ export default function Dashboard() {
           api.get('/api/sleep?days=30'),
           api.get('/api/checkins?days=7'),
         ]);
-        const allEntries = entriesRes.entries || entriesRes || [];
-        const allCheckins = checkinsRes.checkins || checkinsRes || [];
+        const allEntries = Array.isArray(entriesRes) ? entriesRes : [];
+        const allCheckins = Array.isArray(checkinsRes) ? checkinsRes : [];
         setEntries(allEntries);
         setCheckins(allCheckins);
         const todayCI = allCheckins.find((c) => c.date === todayISO);
