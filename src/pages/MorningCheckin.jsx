@@ -41,7 +41,7 @@ export default function MorningCheckin() {
         api.get('/api/sleep?days=14'),
       ]);
       const checkins = checkinsRes.checkins || checkinsRes || [];
-      const entries = sleepRes.entries || sleepRes || [];
+      const entries = Array.isArray(sleepRes) ? sleepRes : [];
       const today = checkins.find((c) => c.date === todayISO);
       setTodayCheckin(today || null);
       setHistory(checkins.filter((c) => c.date !== todayISO).sort((a, b) => (b.date > a.date ? 1 : -1)));

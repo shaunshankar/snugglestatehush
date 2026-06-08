@@ -80,7 +80,7 @@ export default function FactorTracker() {
         api.get('/api/sleep?days=30'),
       ]);
       const factors = factorsRes.factors || factorsRes || [];
-      const entries = sleepRes.entries || sleepRes || [];
+      const entries = Array.isArray(sleepRes) ? sleepRes : [];
       setSleepEntries(entries);
       const today = factors.find((f) => f.date === todayISO);
       setTodayFactor(today || null);

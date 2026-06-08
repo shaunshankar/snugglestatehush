@@ -106,7 +106,7 @@ export default function Streaks() {
       setError(null);
       try {
         const res = await api.get('/api/sleep?days=365');
-        setEntries(res.entries || res || []);
+        setEntries(Array.isArray(res) ? res : []);
       } catch (err) {
         setError(err.message);
       } finally {

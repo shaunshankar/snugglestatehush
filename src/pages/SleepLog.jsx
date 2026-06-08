@@ -334,7 +334,7 @@ export default function SleepLog() {
     setError(null);
     try {
       const res = await api.get('/api/sleep');
-      setEntries(res.entries || res || []);
+      setEntries(Array.isArray(res) ? res : []);
     } catch (err) {
       setError(err.message);
     } finally {
