@@ -83,7 +83,7 @@ export default function Auth({ signup: signupProp = false }) {
       }
 
       login(data.token, data.user);
-      navigate('/', { replace: true });
+      // Navigation is handled by the useEffect that watches isAuthenticated
     } catch (err) {
       setError(err.message || 'Something went wrong. Please try again.');
     } finally {
