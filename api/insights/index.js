@@ -15,7 +15,8 @@ export default async function handler(req, res) {
         `SELECT * FROM ai_insights WHERE user_id = $1 ORDER BY generated_at DESC LIMIT 1`,
         [userId]
       );
-      return res.status(200).json(rows[0] || null);
+      if (!rows[0]) return res.status(404).json({ error: 'No insights found' });
+      return res.status(200).json(rows[0]);
     }
 
     if (req.method === 'POST') {
